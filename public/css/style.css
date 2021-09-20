@@ -1,4 +1,82 @@
-#basicSidebar{
-    /* left: -260px !important; */
+#side-nav {
+    position: absolute;
     top: 77px;
+    left: -22%;
+    /* left: 0%; */
+    display: inline-block;
+    height: calc(100vh - 77px) !important;
+    background-color: blue;
+    padding: 20px 30px;
+    font-weight: 700;
+    width: 22%;
+    text-align: center;
+    overflow: auto;
+    transition: all 1s;
+}
+
+#nav-btn {
+    font-size: 30px;
+    color: blue;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    transition: all 1s;
+}
+
+.nav-open {
+    left: 0% !important;
+}
+
+.rot-180 {
+    transform: rotate(180deg) !important;
+}
+
+#side-nav a:hover {
+    text-decoration: none;
+}
+
+#side-nav ul {
+    list-style-type: none;
+    margin: 0% !important;
+    padding: 0%;
+    text-align: center;
+}
+
+#side-nav ul li a {
+    padding: 15px 0px;
+    display: block;
+    margin: 5px 0px;
+}
+
+#side-nav ul li a.active {
+    background-color: white;
+    color: blue !important;
+}
+
+#side-nav ul li a:hover {
+    background-color: white;
+    color: blue !important;
+}
+
+table {
+    white-space: nowrap !important;
+}
+
+@media screen and (max-width:769px) {
+    #side-nav {
+        width: 40% !important;
+        left: -45%;
+    }
+}
+
+@media screen and (max-width:426px) {
+    #side-nav {
+        width: 75% !important;
+        left: -85%;
+    }
+    #nav-btn {
+        top: 12px;
+        left: 12px;
+    }
 }

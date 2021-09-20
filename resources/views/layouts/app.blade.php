@@ -15,6 +15,7 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="{{asset('css/bootstrap4-admin-compress.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/propeller-topbar.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     
@@ -41,7 +42,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <div class="col-lg-2 col-md-3 col-sm-4 col-5 d-inline-block">
+                <div class="col-lg-2 col-md-3 col-sm-4 col-5 d-inline-block offset-1 offset-md-0">
                     <a href="/">   <img  class="img-fluid" src="{{asset('logo.png')}}" alt="">
  </a>
                 </div>
@@ -98,7 +99,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="">
             @yield('content')
         </main>
     </div>
