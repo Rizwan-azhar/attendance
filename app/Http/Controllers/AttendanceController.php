@@ -99,6 +99,14 @@ public function attendanceview($id)
   return view('attendance', compact('attendance','id'));
 }
 
+public function manual()
+{
+  $users= DB::table('users')->where('is_admin', "!=", 1)->get(); 
+  return view('manual', compact('users'));
+}
+
+
+
 
 
 
