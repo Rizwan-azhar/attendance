@@ -15,12 +15,9 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="{{asset('css/bootstrap4-admin-compress.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/propeller-topbar.css')}}">
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <script rel="stylesheet" href="{{asset('css/bootstrap4-admin-compress.min.js')}}">
-    <script rel="stylesheet" href="{{asset('css/bootstrap4-admin-compress.min.js')}}">
-
+    
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -38,19 +35,10 @@
             background: none;
             border: none;
         }
-        #btn-burg{
-            font-size: 30px;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            z-index: 99999;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
     <div id="app">
-    <i class="fas fa-align-justify btn-burg" id='btn-burg'></i>
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <div class="col-lg-2 col-md-3 col-sm-4 col-5 d-inline-block">
@@ -110,7 +98,7 @@
             </div>
         </nav>
 
-        <main class="pb-4">
+        <main class="py-4">
             @yield('content')
         </main>
     </div>

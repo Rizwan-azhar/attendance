@@ -287,12 +287,9 @@ p.success {
     
 
 </style>
-<div class="row">
-    <div class="col-3 position-relative">
-    @include('layouts.sidebar')
-    </div>
-    <div class="col-9">
-    <div class="container" >
+
+  
+        <div class="container" >
     <h3 class="text-center mt-3 mb-5"> Fastech Attendance</h3>
 <button class="btn btn-md float-right m-lg-5 m-2 btn-primary" data-toggle="modal" data-target="#new_video">Add Employee</button>
 <div style="overflow-x:auto; width:100%;">
@@ -349,8 +346,7 @@ p.success {
 
       </table>
       </div>
-</div>
-    </div>
+
 </div>
 <div id="new_video" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
