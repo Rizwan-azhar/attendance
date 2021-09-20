@@ -75,7 +75,9 @@
                                 </li>
                             @endif
                         @else
-                         <button class="nav-link text-right text-md-center" data-toggle="modal" id="attendance" data-target="#attend">{{ __('Attendance') }}</button>
+                         <button class="nav-link text-right text-md-center" data-toggle="modal" id="attendance" data-target="#attend">{{ __('QR Attendance') }}</button>
+                        <a href="/manual-attendance"> <button  class="nav-link text-right text-md-center" >{{ __('Manual Attendance') }}</button>
+    </a>
                             <li class="nav-item dropdown text-right text-md-center">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
