@@ -2,6 +2,23 @@
 
 @section('content')
 
+@include('layouts.sidebar')
+
+<div class=" justify-content-right float-right pt-5 pr-5">
+    <fieldset class="form-group">
+        <select  class="form-control" id="month" name="month" mulitple>
+            <option> Select Month </option>
+            @foreach($getMonth as $month)
+                <option>
+                    {!! $month!!}
+                </option>
+            @endforeach
+        </select>                              
+    </fieldset>
+</div>
+<div>{!! $chart->html() !!}</div>
+
+
 
 <div class="container" >
     <h3 class="text-center mt-3 mb-5"> Fastech Attendance</h3>
@@ -25,8 +42,9 @@
         </thead>
 
         <tbody>
-
-        @foreach($attendance as $row) 
+          
+        
+@foreach($monthss as $row) 
           <tr>
               <td>{{$row->user_id}}</td>
               <td>{{$row->check_in}}</td>
@@ -34,11 +52,15 @@
               <td>{{$row->present}}</td>
             </tr>
         @endforeach
+
+        
         </tbody>
 
       </table>
       </div>
 </div>
 
+{!! Charts::scripts() !!}
+{!! $chart->script() !!}
 
 @endsection

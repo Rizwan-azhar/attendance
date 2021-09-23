@@ -3,6 +3,11 @@
 
 
 @section('content')
+@include('layouts.sidebar')
+
+
+
+
 <div class="pt-5 container">
 <h2 class="pb-5 text-center float-center"> Manual Attendance</h2>
 
@@ -24,7 +29,7 @@
                <td>{{$user->name}}</td>
                <td>
                <a href="{{'mark-attendance/'.$user->id}}"><button class="btn btn-success">Present</button></a>
-               <a href=""><button class="btn btn-success">Absent</button></a>                                            
+               <a href="{{'mark-attendance2/'.$user->id}}"><button class="btn btn-danger">Absent</button></a>                                            
                </td>
 
           </tr>

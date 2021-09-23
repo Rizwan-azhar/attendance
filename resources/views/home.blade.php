@@ -2,13 +2,16 @@
 
 
 @section('content')
+
 @include('layouts.sidebar')
+
+
 <style>
     .check_icon,
     .wrong_icon {
 
         position: absolute;
-
+)
         top: 0px;
 
         right: 0;
@@ -292,14 +295,18 @@
     }
 </style>
 
+<body onload=display_ct();>
+<span class="float-right mr-5 p-3 rounded-pill  num-font  font-weight-bolder f-sm-10" style="background-color:#0FA3E0" id='ct5' ></span>
+
+
+
 
 <div class="container">
-    <h3 class="text-center mt-3 mb-5"> Fastech Attendance</h3>
+    <h3 class="text-center pl-5 mt-3 mb-5"> Fastech Attendance</h3>
     <button class="btn btn-md float-right m-lg-5 m-2 btn-primary" data-toggle="modal" data-target="#new_video">Add Employee</button>
     <div style="overflow-x:auto; width:100%;">
-        @if(Session::has('message'))
-        <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
-        @endif
+     
+
         <table id="dtBasicExample" class="table table-striped table-bordered table-sm text-center" cellspacing="0" width="100%">
             <thead>
                 <tr>
@@ -327,6 +334,8 @@
                 ?>
                 @foreach ($user as $userdata)
 
+                    
+
                 <?php $i++; ?>
                 <tr>
                     <td class="align-middle">{{ $i }}</td>
@@ -336,7 +345,7 @@
                     <td class="align-middle">{{$userdata->number }}</td>
                     <td class="align-middle">@if(isset($userdata->qr_code) && $userdata->qr_code !=null) {!! QrCode::size(100)->generate($userdata->qr_code); !!} @endif </td>
                     <td class="align-middle">{{$userdata->joining_date }}</td>
-                    <td class="align-middle"> {{DB::table('attendances')->where('Qr_code',$userdata->qr_code)->where('present',1)->count();}}</td>
+                    <td class="align-middle"> {{DB::table('attendances')->where('user_id',$userdata->id)->where('present',1)->count();}}</td>
                     <td class="align-middle">
 
                         <a href="{{'attendancedetail/'.$userdata->id}}"><i class="fa fa-eye btn btn-primary mx-2" aria-hidden="true"></i>
@@ -510,6 +519,7 @@
         </div>
     </div>
 </div>
+</body>
 <!-- ----------------------------- -->
 
 
@@ -777,5 +787,22 @@
 
 
     });
+</script>
+
+<script type="text/javascript"> 
+function display_ct5() {
+var x = new Date()
+var ampm = x.getHours( ) >= 12 ? ' PM' : ' AM';
+
+var x1=x.getMonth() + 1+ "/" + x.getDate() + "/" + x.getFullYear(); 
+x1 = x1 + " - " +  x.getHours( )+ ":" +  x.getMinutes() + ":" +  x.getSeconds() + ":" + ampm;
+document.getElementById('ct5').innerHTML = x1;
+display_c5();
+ }
+ function display_c5(){
+var refresh=1000; // Refresh rate in milli seconds
+mytime=setTimeout('display_ct5()',refresh)
+}
+display_c5()
 </script>
 @endsection

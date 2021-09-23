@@ -39,6 +39,26 @@
                             </div>
                         </div>
 
+                       <div  class="form-group row">
+                            <label for="number" class="col-md-4 col-form-label text-md-right">{{ __('Number') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="num" type="number" class="form-control @error('number') is-invalid @enderror" name="number" value="{{ old('number') }}" required autocomplete="number">
+
+                               
+                            </div>
+                        </div>
+
+                        <div  class="form-group row">
+                            <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Date') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="date" type="date" class="form-control @error('date') is-invalid @enderror" name="date" value="{{ old('date') }}" required autocomplete="number">
+
+                               
+                            </div>
+                        </div>
+
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 

@@ -24,6 +24,8 @@ class CreateUsersTable extends Migration
             $table->string('ip_address');
             $table->string('joining_date');
             $table->integer('number');
+            $table->string('code');
+            $table->integer('status');
             $table->rememberToken();
             $table->timestamps();
         });
