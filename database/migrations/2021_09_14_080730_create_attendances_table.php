@@ -19,6 +19,11 @@ class CreateAttendancesTable extends Migration
             $table->timestamp('check_out')->nullable();
             $table->integer('user_id')->nullable();
             $table->string('qr_code');
+            $table->integer('present');
+            $table->string('progress');
+            $table->string('month')->nullable();
+            $table->integer('year')->nullable();
+
 
             $table->timestamps();
         });

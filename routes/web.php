@@ -42,10 +42,16 @@ Route::middleware('auth')->group(function (){
     Route::get('attendancedetail/{id}',[App\Http\Controllers\AttendanceController::class, 'attendanceview'])->name('attendancedetail');
     Route::get('mark-attendance/{id}',function($id){
       $timenow = Carbon::now()->addHours(5)->toDateTimeString();
-       DB::table('attendances')->where('id',$id)->insert([
+      $currentmonth = Carbon::now()->addHours(5)->format('F');
+      $currentyear = Carbon::now()->addHours(5)->format('Y');
+       
+      
+      DB::table('attendances')->where('id',$id)->insert([
         'user_id' =>$id,
         'present' => 1,
         'check_in'=>$timenow,
+        'month' =>$currentmonth,
+        'year'=>$currentyear,
        
         
       ]);
@@ -70,3 +76,13 @@ Route::middleware('auth')->group(function (){
   });
 
 });
+
+Route::get('progress','App\Http\Controllers\HomeController@progress');
+Route::post('progress','App\Http\Controllers\HomeController@post_progress');
+Route::get('view-progress/{id}','App\Http\Controllers\HomeController@view_progress');
+Route::get('salary','App\Http\Controllers\HomeController@view_salary');
+Route::post('edit_salary','App\Http\Controllers\HomeController@update_salary');
+Route::get('update_salary/{id}','App\Http\Controllers\HomeController@edit_salary');
+Route::get('check_month',[App\Http\Controllers\AttendanceController::class, 'check_month'])->name('check_month');
+
+

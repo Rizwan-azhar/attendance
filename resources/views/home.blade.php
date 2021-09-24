@@ -201,7 +201,6 @@
         animation: dash-check 0.9s 0.35s ease-in-out forwards;
 
     }
-
     p {
 
         text-align: center;
@@ -211,20 +210,16 @@
         // font-size: 1.25em;
 
     }
-
     p.success {
 
         color: #73AF55;
 
     }
-
-
     .reedem_modal_detail {
 
         margin-top: -64px;
 
     }
-
     #stop_cam {
 
         position: relative;
@@ -232,10 +227,7 @@
         opacity: 1 !important;
 
     }
-
     #stop_cam span {
-
-
         z-index: 99999;
         opacity: 1 !important;
         position: absolute;
@@ -251,7 +243,6 @@
         justify-content: center;
 
     }
-
     @media (min-width: 576px) {
 
         .modal-dialog {
@@ -262,10 +253,7 @@
 
         }
 
-
-
     }
-
     @media screen and (min-width: 768px) {
 
         .modal-body {
@@ -277,9 +265,6 @@
             padding-top: 0;
 
         }
-
-
-
     }
 
     #reader canvas {
@@ -388,11 +373,19 @@
                         <input style="width: 100% !important;" type="number" required class="form-control" name="number" aria-describedby="emailHelp" placeholder="Number">
 
                     </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Salary</label>
+                        <input style="width: 100% !important;" required type="number" id="" class="form-control" name="salary" aria-describedby="emailHelp" placeholder="Salary">
+
+                    </div>
+
                     <div class="form-group">
                         <label for="exampleInputEmail1">Joining Date</label>
                         <input style="width: 100% !important;" required type="date" id="txtDate" class="form-control" name="joining_date" aria-describedby="emailHelp">
 
                     </div>
+
 
                     <script>
                         $(function() {
@@ -490,36 +483,21 @@
                         <a class="styling_rotate" id="changecam"><i id="hide" class="fa fa-refresh"></i></a>
 
                     </div>
-
-
                     <h3 class="text-center" id="hideor">{{__('OR')}}</h3>
-
                     <a class="btn btn-primary" id="imageselect" style="display:block; margin-top: 60px; background: #ffcc00;color: #000;border: none;border-radius: 40px;padding: 11px;" onclick="document.getElementById('qr-input-file').click()">{{ __('Select or take photo')}}</a>
-
                     <input type="file" class="text-center btn-primary" id="qr-input-file" accept="image/*" style="display:none">
-
                     <input type="hidden" name="qr_code" value="" id="qr_voucher_code">
-
-
-
-
                     <a>
-
-                        <button type="submit" id="thebutton" class="btn yes_btn reedem_modal_btn d-none">{{ __('scan')}}</button>
-
+                         <button type="submit" id="thebutton" class="btn yes_btn reedem_modal_btn d-none">{{ __('scan')}}</button>
                     </a>
-
-
-
-
-
-
                 </form>
             </div>
         </div>
     </div>
 </div>
 </body>
+
+
 <!-- ----------------------------- -->
 
 

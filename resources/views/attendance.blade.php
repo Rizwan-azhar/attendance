@@ -6,7 +6,7 @@
 
 <div class=" justify-content-right float-right pt-5 pr-5">
     <fieldset class="form-group">
-        <select  class="form-control" id="month" name="month" mulitple>
+        <select  class="form-control" id="{{$id}}" name="month" mulitple>
             <option> Select Month </option>
             @foreach($getMonth as $month)
                 <option>
@@ -16,7 +16,6 @@
         </select>                              
     </fieldset>
 </div>
-<div>{!! $chart->html() !!}</div>
 
 
 
@@ -41,7 +40,7 @@
           </tr>
         </thead>
 
-        <tbody>
+        <tbody id="monthdata">
           
         
 @foreach($monthss as $row) 
@@ -60,7 +59,39 @@
       </div>
 </div>
 
-{!! Charts::scripts() !!}
-{!! $chart->script() !!}
+<!-- script -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+    $('select').on('change', function() {
+        var month= this.value;
+        var id=this.id;
+        var form_data = {
+            month: month,
+            id:id
+
+        };
+
+        $.ajax({
+            type: 'get',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '<?php echo url("check_month"); ?>',
+            data: form_data,
+            success: function(msg) {
+                $("#monthdata").empty();
+                $.each(msg, function(index) {
+                  var  html='<tr> <td>'+msg[index].user_id+'</td><td>'+msg[index].check_in+'</td><td>'+msg[index].check_out+'</td><td>'+msg[index].present+'</td></tr>';
+                  $("#monthdata").append(html);
+                                    });
+
+
+
+            }
+
+        });
+      });
+    </script>
 
 @endsection

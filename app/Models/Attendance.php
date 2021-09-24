@@ -16,6 +16,9 @@ class Attendance extends Model
         'qr_code',
         'user_id',
         'present',
+        'progress',
+        'month',
+        'year'
     ];
 
 

@@ -9,7 +9,6 @@ use Symfony\Component\Console\Input\Input;
 use DB;
 use Carbon\Carbon;
 use PDF;
-use Charts;
 use App\Exports\AttendanceExport;
 
 use Maatwebsite\Excel\Facades\Excel;
@@ -51,7 +50,8 @@ class AttendanceController extends Controller
 
         $user_id=User::where('qr_code',$request->qr_code)->pluck('id')->first();
         $timenow = Carbon::now()->addHours(5)->toDateTimeString();
-
+        $currentmonth = Carbon::now()->addHours(5)->format('F');
+        $currentyear = Carbon::now()->addHours(5)->format('Y');
         $startTime = Carbon::createFromFormat('H:i a', '09:30 AM');
         $endTime = Carbon::createFromFormat('H:i a', '10:30 AM');
 
@@ -66,6 +66,8 @@ class AttendanceController extends Controller
           $Attendance->check_out = null;
           $Attendance->qr_code = $request->qr_code;
           $Attendance->present = 1;
+          $Attendance->month = $currentmonth;
+          $Attendance->year = $currentyear;
           $Attendance->save();
         }
           elseif($currentTime->between($checkoutstartTime, $checkoutendTime, true)){
@@ -84,6 +86,8 @@ class AttendanceController extends Controller
           $Attendance->check_out = null;
           $Attendance->qr_code = $request->qr_code;
           $Attendance->present = 1;
+          $Attendance->month = $currentmonth;
+          $Attendance->year = $currentyear;
           $Attendance->save();
         }
 
@@ -98,22 +102,12 @@ public function attendanceview($id)
   $attendance= Attendance::where('user_id', $id)->get();
   $getMonth = [];
   foreach (range(1, 12) as $m) {
-      $getMonth[] = date('m - F', mktime(0, 0, 0, $m, 1));
+      $getMonth[] = date('F', mktime(0, 0, 0, $m, 1));
   }
 
  $monthss =  Attendance::where('user_id', $id)->whereMonth('check_in', date('m'))->whereYear('check_in', date('Y'))->get();
- $attend = Attendance::where('user_id', $id)->where(DB::raw("(DATE_FORMAT(check_in,'%Y'))"),date('Y'))
-    				->get();
-           
-        $chart = Charts::database($attend, 'bar', 'highcharts')
-        ->title("Monthly User Attendance")
-			      ->elementLabel("Total Attendances")
-			      ->dimensions(1000, 500)
-			      ->responsive(false)
-			      ->groupByMonth(date('Y'), true);
-            dd($chart);
-
-            return view('attendance', compact('attendance','id', 'getMonth', 'monthss', 'chart'));
+ 
+            return view('attendance', compact('attendance','id', 'getMonth', 'monthss'));
 }
 
 
@@ -121,6 +115,15 @@ public function manual()
 {
   $users= DB::table('users')->where('is_admin', "!=", 1)->where('is_admin', "!=", 2)->get(); 
   return view('manual', compact('users'));
+}
+
+public function check_month()
+{
+    $month=request()->query('month');
+    $id=request()->query('id');
+
+    $get_month_record=Attendance::where('user_id',$id)->where('month',$month)->get();
+    return $get_month_record;
 }
 
 

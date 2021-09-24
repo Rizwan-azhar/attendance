@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use auth;
 use DB;
+use Carbon\CarbonPeriod;
 use Carbon\Carbon;
 
 use Symfony\Component\Console\Input\Input;
@@ -80,9 +81,73 @@ class HomeController extends Controller
         $user->number = $request->number;
         $user->qr_code = $code;
         $user->joining_date = $request->joining_date;
+        $user->salary = $request->salary;
         $user->save();
         return redirect('/home')->with('message' ,'New employee added.');
     }
 
+    public function progress()
+    {
+        
+        $date=Carbon::now()->startOfMonth();
+
+        $date=Carbon::parse($date)->format('Y-m-d');
+        $now=Carbon::now();
+        $now=Carbon::parse($now)->format('Y-m-d');
+        $period = CarbonPeriod::create($date, $now);
+       
+       
+        $dates = $period->toArray();
+       
+    return view('progress',compact('dates'));
+
+}
+
+public function post_progress(Request $request){
+
+$date=Carbon::now()->parse()->format('Y-m-d');
+
+$checkin = DB::table('attendances')->where('user_id', $request->user_id )->pluck('id')->last();
+
+
+
+    DB::table('attendances')->where('user_id', $request->user_id)->where('id', $checkin )->update([
+        'progress' =>$request->progress,
+    ]);
+    return redirect()->back();   
+}
+
+    public function view_progress($id)
+    {
+        $pro = DB::table('attendances')->where('user_id', $id)->get();
+        
+
+        return view('view_progress', compact('pro'));
+
+    }
+
+    public function view_salary()
+    {
+        
+        $salary = DB::table('users')->get();
+
+        return view('salary', compact('salary'));
+
+    }
+
+    public function update_salary(Request $request)
+    {
+        
+        DB::table('users')->where('id', $request->id)->update([
+            'salary'=>$request->salary,
+        ]);
+        return redirect()->back();
+        
+    }
+
+    public function edit_salary($id){
+        $sal = DB::table('users')->where('id' , $id)->first();
+        return view('edit_salary' , compact('sal'));
+    }
 
 }
